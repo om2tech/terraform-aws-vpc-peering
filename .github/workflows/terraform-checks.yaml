@@ -1,0 +1,119 @@
+name: "Terraform"
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - release/*
+  pull_request:
+    branches: [main, develop, release/*]
+    types: [opened, labeled, synchronize]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.repository }}-${{ github.workflow }}
+  cancel-in-progress: false
+
+jobs:
+  terraform-format:
+    name: "Terraform Code Format Checks"
+    runs-on: large-ubuntu-latest
+    timeout-minutes: 1
+    defaults:
+      run:
+        working-directory: .
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ vars.TF_VERSION }}
+          terraform_wrapper: false
+
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check
+
+  terrascan:
+    name: "Terrascan"
+    runs-on: large-ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Terrascan
+        id: terrascan
+        uses: tenable/terrascan-action@main
+        with:
+          iac_dir: .
+          iac_type: "terraform"
+          iac_version: "v14"
+          policy_type: "aws"
+          only_warn: true
+          sarif_upload: true
+          #scm_token: ${{ secrets.ACCESS_TOKEN }}
+          #verbose: true
+          #non_recursive:
+          #policy_path:
+          #skip_rules:
+          #config_path:
+          #find_vulnerabilities:
+          #webhook_url:
+          #webhook_token:
+
+  checkov:
+    name: "Checkov"
+    runs-on: large-ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run Checkov action
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: .
+          quiet: true # optional: display only failed checks
+          soft_fail: true # optional: do not return an error code if there are failed checks
+          framework: terraform # optional: run only on a specific infrastructure {cloudformation,terraform,kubernetes,all}
+          output_format: sarif # optional: the output format, one of: cli, json, junitxml, github_failed_only, or sarif. Default: sarif
+          download_external_modules: true # optional: download external terraform modules from public git repositories and terraform registry
+          log_level: DEBUG # optional: set log level. Default WARNING
+          container_user: 1000 # optional: Define what UID and / or what GID to run the container under to prevent permission issues
+          skip_check: CKV_TF_1,CKV2_AWS_5 # optional: skip a specific check_id. can be comma separated list
+          #file: example/tfplan.json # optional: provide the path for resource to be scanned. This will override the directory if both are provided.
+          #check: CKV_AWS_1 # optional: run only a specific check_id. can be comma separated list
+          #config_file: path/this_file
+          #baseline: cloudformation/.checkov.baseline # optional: Path to a generated baseline file. Will only report results not in the baseline.
+
+  docs:
+    runs-on: large-ubuntu-latest
+    if: contains(github.ref, 'pull')
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Render terraform docs inside the README.md and push changes back to PR branch
+        uses: terraform-docs/gh-actions@v1
+        with:
+          working-dir: .
+          git-push: "true"
+          git-commit-message: "[skip ci] terraform-docs: Update READMEs"
+          git-push-sign-off: true
+  
