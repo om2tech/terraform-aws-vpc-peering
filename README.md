@@ -1,4 +1,6 @@
-# terraform-aws-vpc-peering<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+# terraform-aws-vpc-peering
+
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
