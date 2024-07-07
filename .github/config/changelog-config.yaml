@@ -1,0 +1,32 @@
+changelog_type: "pull_request"
+header_prefix: "Version:"
+commit_changelog: true
+comment_changelog: false
+include_unlabeled_changes: true
+unlabeled_group_title: "Changes"
+pull_request_title_regex: ".*"
+version_regex: ".*"
+group_config:
+  - title: Bug Fixes
+    labels:
+      - bug
+      - bugfix
+  - title: Code Improvements
+    labels:
+      - improvements
+      - enhancement
+  - title: New Features
+    labels:
+      - feature
+  - title: Updates
+    labels:
+      - update
+      - updates
+  - title: Dependencies
+    labels:
+      - dependencies
+  - title: Documentation Updates
+    labels:
+      - docs
+      - documentation
+      - doc

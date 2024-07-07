@@ -1,0 +1,36 @@
+name: "Changelog"
+
+on:
+  push:
+    branches:
+      - "release/**"
+    paths-ignore:
+      - "*.md"
+  create:
+  workflow_dispatch:
+
+jobs:
+  generate_changelog:
+    if: contains( github.ref, 'release/')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install GitVersion
+        uses: gittools/actions/gitversion/setup@v1.1.1
+        with:
+          versionSpec: "5.12.0"
+
+      - name: Determine Version
+        id: gitversion
+        uses: gittools/actions/gitversion/execute@v1.1.1
+
+      - name: Run Changelog CI
+        uses: saadmk11/changelog-ci@v1.1.2
+        with:
+          config_file: .github/config/changelog-config.yaml
+          release_version: ${{ steps.gitversion.outputs.majorMinorPatch }}
+          github_token: ${{ secrets.GITHUB_TOKEN  }}
