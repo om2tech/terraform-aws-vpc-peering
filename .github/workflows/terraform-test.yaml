@@ -17,7 +17,7 @@ concurrency:
 jobs:
   terraform-test:
     name: "Terraform Tests"
-    runs-on: large-ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4

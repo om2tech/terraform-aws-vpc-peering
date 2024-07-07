@@ -18,7 +18,7 @@ concurrency:
 jobs:
   terraform-format:
     name: "Terraform Code Format Checks"
-    runs-on: large-ubuntu-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 1
     defaults:
       run:
@@ -42,7 +42,7 @@ jobs:
 
   terrascan:
     name: "Terrascan"
-    runs-on: large-ubuntu-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 2
 
     steps:
@@ -73,7 +73,7 @@ jobs:
 
   checkov:
     name: "Checkov"
-    runs-on: large-ubuntu-latest
+    runs-on: ubuntu-latest
     timeout-minutes: 2
 
     steps:
@@ -101,7 +101,7 @@ jobs:
           #baseline: cloudformation/.checkov.baseline # optional: Path to a generated baseline file. Will only report results not in the baseline.
 
   docs:
-    runs-on: large-ubuntu-latest
+    runs-on: ubuntu-latest
     if: contains(github.ref, 'pull')
     steps:
       - name: Checkout
