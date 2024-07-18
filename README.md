@@ -21,7 +21,7 @@ security posture on the other end.
 In order to successfully set peering options for the reuqester VPC, the peering connection must be accepted.
 This requires either:
 - The requester and accepter to be in the same account
-- A privder with permissions in each account to accept at time of apply or within the configured timeout.
+- A provider with permissions in each account to accept at time of apply or within the configured timeout.
 - The accepter to be an accept resouce managed by a third party cloud provider, ex. CloudAMQP.
 
 ## Contributing
