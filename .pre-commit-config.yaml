@@ -1,27 +1,27 @@
 repos:
 - repo: https://github.com/antonbabenko/pre-commit-terraform
-  rev: v1.89.0
+  rev: v1.92.0
   hooks:
     - id: terraform_fmt
       args:
         - --hook-config=--retry-once-with-cleanup=true
         - --args=-write=true
         - --args=-recursive=true
-    # - id: terraform_validate
-    #   args:
-    #     - --tf-init-args=-upgrade
-    #     - --hook-config=--retry-once-with-cleanup=true
-    # - id: terrascan
-    # - id: terraform_tfsec
-    # - id: terraform_tflint
-    #   args:
-    #     - --args=--module
-    #     - --args=--enable-rule=terraform_documented_variables
+    - id: terraform_validate
+      args:
+        - --tf-init-args=-upgrade
+        - --hook-config=--retry-once-with-cleanup=true
+    - id: terrascan
+    - id: terraform_tfsec
+    - id: terraform_tflint
+      args:
+        - --args=--module
+        - --args=--enable-rule=terraform_documented_variables
     - id: terraform_docs
       args:
         - --hook-config=--add-to-existing-file=true
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.5.0
+  rev: v4.6.0
   hooks:
     - id: check-merge-conflict
     - id: end-of-file-fixer
