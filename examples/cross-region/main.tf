@@ -1,9 +1,9 @@
 terraform {
-  required_version = "~>1.7.0"
+  required_version = ">=1.7.0, <1.9.0"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "5.57.0"
+      version = ">=5.57.0"
     }
   }
 }
@@ -53,39 +53,39 @@ provider "aws_accepter" {
   }
 }
 
-module "vpc" {
-  provider = aws
-  source   = "app.terraform.io/TOMS/vpc/aws"
-  version  = "0.10.1"
+# module "vpc" {
+#   provider = aws
+#   source   = "app.terraform.io/TOMS/vpc/aws"
+#   version  = "0.10.1"
 
-  az_primary            = "a"
-  az_secondary          = "b"
-  az_tertiary           = "c"
-  az_primary_db_ro      = "a"
-  az_secondary_db_ro    = "b"
-  az_tertiary_db_ro     = "c"
-  domain                = "om2.com"
-  name                  = "om2-phoenixpoc-vpc"
-  public_hosted_zone_id = ""
-  cidr_prefix           = "10.250"
-}
+#   az_primary            = "a"
+#   az_secondary          = "b"
+#   az_tertiary           = "c"
+#   az_primary_db_ro      = "a"
+#   az_secondary_db_ro    = "b"
+#   az_tertiary_db_ro     = "c"
+#   domain                = "om2.com"
+#   name                  = "om2-phoenixpoc-vpc"
+#   public_hosted_zone_id = ""
+#   cidr_prefix           = "10.250"
+# }
 
-module "vpc" {
-  provider = aws_accepter
-  source   = "app.terraform.io/TOMS/vpc/aws"
-  version  = "0.10.1"
+# module "vpc" {
+#   provider = aws_accepter
+#   source   = "app.terraform.io/TOMS/vpc/aws"
+#   version  = "0.10.1"
 
-  az_primary            = "a"
-  az_secondary          = "b"
-  az_tertiary           = "c"
-  az_primary_db_ro      = "a"
-  az_secondary_db_ro    = "b"
-  az_tertiary_db_ro     = "c"
-  domain                = "om2.com"
-  name                  = "om2-phoenixpoc-vpc"
-  public_hosted_zone_id = ""
-  cidr_prefix           = "10.251"
-}
+#   az_primary            = "a"
+#   az_secondary          = "b"
+#   az_tertiary           = "c"
+#   az_primary_db_ro      = "a"
+#   az_secondary_db_ro    = "b"
+#   az_tertiary_db_ro     = "c"
+#   domain                = "om2.com"
+#   name                  = "om2-phoenixpoc-vpc"
+#   public_hosted_zone_id = ""
+#   cidr_prefix           = "10.251"
+# }
 
 
 module "vpc_peering_request" {
