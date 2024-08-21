@@ -10,7 +10,7 @@ Param (
     $TFTestCliArgs
 )
 
-$tag = "v1.89.1"
+$tag = "latest"
 docker pull ghcr.io/antonbabenko/pre-commit-terraform:$tag
 docker run --rm -v ${pwd}:/lint -w /lint ghcr.io/antonbabenko/pre-commit-terraform:$tag run -a
 

@@ -51,10 +51,10 @@ Signing off on commits is a declaration that you have followed all guidelines de
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 README.md updated successfully
-examples\cross-account-accepter\README.md updated successfully
-examples\cross-account-requester\README.md updated successfully
-examples\cross-region\README.md updated successfully
-examples\standard-connection\README.md updated successfully
+examples/cross-account-accepter/README.md updated successfully
+examples/cross-account-requester/README.md updated successfully
+examples/cross-region/README.md updated successfully
+examples/standard-connection/README.md updated successfully
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
 <!-- BEGIN_TF_DOCS -->
