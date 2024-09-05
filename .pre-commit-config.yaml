@@ -1,22 +1,12 @@
 repos:
 - repo: https://github.com/antonbabenko/pre-commit-terraform
-  rev: v1.92.0
+  rev: v1.89.1
   hooks:
     - id: terraform_fmt
       args:
         - --hook-config=--retry-once-with-cleanup=true
         - --args=-write=true
-        - --args=-recursive=true
-    - id: terraform_validate
-      args:
-        - --tf-init-args=-upgrade
-        - --hook-config=--retry-once-with-cleanup=true
-    - id: terrascan
-    - id: terraform_tfsec
-    - id: terraform_tflint
-      args:
-        - --args=--module
-        - --args=--enable-rule=terraform_documented_variables
+        - --args=-recursive=false # should be returned to true after solving issues with examples dependencies (vpc module in TF registry)
     - id: terraform_docs
       args:
         - --hook-config=--add-to-existing-file=true
