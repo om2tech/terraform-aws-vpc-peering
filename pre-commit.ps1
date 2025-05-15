@@ -1,5 +1,5 @@
 [CmdletBinding()]
-Param (
+param (
     [Parameter()]
     [ValidateNotNullOrEmpty()]
     [String]

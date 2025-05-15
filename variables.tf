@@ -6,8 +6,8 @@ variable "accepter_allow_remote_vpc_dns_resolution" {
 
 variable "accepter_cidr_block" {
   type        = string
-  description = "cidr block for accepter's VPC"
-  default     = null
+  description = "CIDR block for accepter's VPC"
+  default     = ""
 }
 
 variable "accepter_enabled" {
@@ -120,6 +120,7 @@ variable "requester_allow_remote_vpc_dns_resolution" {
 }
 
 variable "requester_cidr_block" {
+  type        = string
   description = "The CIDR block of the requester that will be used in accepter"
   default     = ""
 }
