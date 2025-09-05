@@ -9,7 +9,6 @@ terraform {
 }
 
 locals {
-  requester_region = ""
   accepter_region  = ""
 
   accepter_allow_remote_vpc_dns_resolution  = true
