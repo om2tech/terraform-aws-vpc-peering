@@ -34,7 +34,6 @@ provider "aws" {
   }
 }
 
-
 /*
 run "vpc_requester" {
   variables {

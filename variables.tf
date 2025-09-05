@@ -62,20 +62,20 @@ variable "accepter_vpc_tags" {
 
 variable "auto_accept" {
   type        = bool
-  default     = true
   description = "Automatically accept the peering"
+  default     = true
 }
 
 variable "aws_route_create_timeout" {
   type        = string
-  default     = "5m"
   description = "Time to wait for AWS route creation specifed as a Go Duration, e.g. `2m`"
+  default     = "5m"
 }
 
 variable "aws_route_delete_timeout" {
   type        = string
-  default     = "5m"
   description = "Time to wait for AWS route deletion specifed as a Go Duration, e.g. `5m`"
+  default     = "5m"
 }
 
 variable "create" {
@@ -115,8 +115,8 @@ variable "peering_connection_id_to_accept" {
 
 variable "requester_allow_remote_vpc_dns_resolution" {
   type        = bool
-  default     = true
   description = "Allow requester VPC to resolve public DNS hostnames to private IP addresses when queried from instances in the accepter VPC"
+  default     = true
 }
 
 variable "requester_cidr_block" {
@@ -139,11 +139,11 @@ variable "requester_route_table_tags" {
 
 variable "requester_security_group_name" {
   type        = string
-  default     = "Internal-Peering"
   description = <<DOC
   The name of the security group in the requester VPC to allow traffic from the accepter VPC
   The security group should already exist in the requester VPC
   DOC
+  default     = "Internal-Peering"
 }
 
 variable "requester_subnet_tags" {
@@ -153,8 +153,8 @@ variable "requester_subnet_tags" {
 }
 
 variable "requester_vpc_id" {
-  description = "requester VPC ID"
   type        = string
+  description = "requester VPC ID"
 }
 
 variable "requester_vpc_tags" {
