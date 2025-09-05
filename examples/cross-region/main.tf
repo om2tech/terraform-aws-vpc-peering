@@ -9,7 +9,7 @@ terraform {
 }
 
 locals {
-  accepter_region  = ""
+  accepter_region = ""
 
   accepter_allow_remote_vpc_dns_resolution  = true
   accepter_cidr_block                       = "10.128.0.0/16"
