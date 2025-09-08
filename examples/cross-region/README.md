@@ -38,7 +38,7 @@ No outputs.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.7.0, <1.9.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=5.90.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=5.90.0, <=5.100.0 |
 
 ## Providers
 
@@ -48,7 +48,6 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | app.terraform.io/TOMS/vpc/aws | 0.15.0 |
 | <a name="module_vpc_peering_accept"></a> [vpc\_peering\_accept](#module\_vpc\_peering\_accept) | ../../ | n/a |
 | <a name="module_vpc_peering_request"></a> [vpc\_peering\_request](#module\_vpc\_peering\_request) | ../../ | n/a |
 
