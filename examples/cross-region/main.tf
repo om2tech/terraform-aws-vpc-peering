@@ -3,14 +3,13 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">=5.57.0"
+      version = ">=5.90.0, <=5.100.0"
     }
   }
 }
 
 locals {
-  requester_region = ""
-  accepter_region  = ""
+  accepter_region = ""
 
   accepter_allow_remote_vpc_dns_resolution  = true
   accepter_cidr_block                       = "10.128.0.0/16"

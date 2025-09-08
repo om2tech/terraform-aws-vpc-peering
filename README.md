@@ -49,6 +49,48 @@ This can be done by adding the --sign-off flag to the git commit command.
 
 Signing off on commits is a declaration that you have followed all guidelines defined in the [DCO.md](DCO.md)
 
+A module allowing for easy request and acceptance of VPC peering connections between two VPCs.
+VPCs may be in different accounts and/or different regions.
+The requester should be configured and run first, followed by the accepter.
+If both requester and accepter are in the same account then the connection can be auto-accepted.
+
+## Usage
+
+In order to use this in a single account it is enough to configure a single provider.
+In this auto_accept can be set to true and the accepter will automatically accept the peering connection.
+
+In order to configure a peering connection between separate accounts it is recommended to define the module twice, 
+once for the requester and once for the accepter.
+Each definition should be assigend a provider with the relvant permissions in the relevant accounts
+
+This module can be used to create one-way peering connection requests which will only be accepted later
+This will only require defining the requester. The accpeter will need to accept and configure the required
+security posture on the other end.
+
+In order to successfully set peering options for the reuqester VPC, the peering connection must be accepted.
+This requires either:
+- The requester and accepter to be in the same account
+- A privder with permissions in each account to accept at time of apply or within the configured timeout.
+- The accepter to be an accept resouce managed by a third party cloud provider, ex. CloudAMQP.
+
+## Contributing
+
+Please feel free to fork this repo and create a PR.
+
+Use pre-commit-terraform docker image to run pre-commit checks.
+These will include:
+- terraform fmt
+- terraform docs
+
+More checks can be added to the .pre-commit-config.yaml file
+
+Additional checks such as terraform test have been added in the scripts pre-commit.sh and pre-commit.ps1
+Feel free to run either.
+
+## Licensing
+
+This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 README.md updated successfully
 examples\cross-account-accepter\README.md updated successfully
@@ -63,14 +105,15 @@ examples\standard-connection\README.md updated successfully
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.7.0, <1.9.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=5.57.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=5.90.0, <=5.100.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.63.1 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.6.2 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.100.0 |
+| <a name="provider_aws.accepter"></a> [aws.accepter](#provider\_aws.accepter) | 5.100.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.7.2 |
 
 ## Modules
 
@@ -89,6 +132,7 @@ No modules.
 | [aws_vpc_peering_connection_options.accepter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection_options) | resource |
 | [aws_vpc_peering_connection_options.requester](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection_options) | resource |
 | [random_string.test](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/string) | resource |
+| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
 | [aws_route_table.requester](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route_table) | data source |
 | [aws_route_tables.accepter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route_tables) | data source |
 | [aws_route_tables.accepter_default_rts](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route_tables) | data source |
@@ -107,7 +151,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_accepter_account_id"></a> [accepter\_account\_id](#input\_accepter\_account\_id) | Accepter account ID | `string` | `""` | no |
 | <a name="input_accepter_allow_remote_vpc_dns_resolution"></a> [accepter\_allow\_remote\_vpc\_dns\_resolution](#input\_accepter\_allow\_remote\_vpc\_dns\_resolution) | Allow accepter VPC to resolve public DNS hostnames to private IP addresses when queried from instances in the requester VPC | `bool` | `true` | no |
-| <a name="input_accepter_cidr_block"></a> [accepter\_cidr\_block](#input\_accepter\_cidr\_block) | cidr block for accepter's VPC | `string` | `null` | no |
+| <a name="input_accepter_cidr_block"></a> [accepter\_cidr\_block](#input\_accepter\_cidr\_block) | CIDR block for accepter's VPC | `string` | `""` | no |
 | <a name="input_accepter_enabled"></a> [accepter\_enabled](#input\_accepter\_enabled) | Flag to enable/disable the accepter side of the peering connection | `bool` | `false` | no |
 | <a name="input_accepter_region"></a> [accepter\_region](#input\_accepter\_region) | Accepter AWS region | `string` | `""` | no |
 | <a name="input_accepter_route_table_tags"></a> [accepter\_route\_table\_tags](#input\_accepter\_route\_table\_tags) | Only add peer routes to accepter VPC route tables matching these tags | `map(string)` | `{}` | no |

@@ -3,7 +3,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">=5.57.0"
+      version = ">=5.90.0, <=5.100.0"
     }
   }
 }
@@ -39,8 +39,8 @@ provider "aws" {
 
 # module "vpc" {
 #   source  = "app.terraform.io/TOMS/vpc/aws"
-#   version = "0.10.1"
-
+#   version = "0.15.0"
+#
 #   az_primary            = "a"
 #   az_secondary          = "b"
 #   az_tertiary           = "c"
