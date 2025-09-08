@@ -37,21 +37,21 @@ provider "aws" {
   }
 }
 
-module "vpc" {
-  source  = "app.terraform.io/TOMS/vpc/aws"
-  version = "0.15.0"
-
-  az_primary            = "a"
-  az_secondary          = "b"
-  az_tertiary           = "c"
-  az_primary_db_ro      = "a"
-  az_secondary_db_ro    = "b"
-  az_tertiary_db_ro     = "c"
-  domain                = "om2.com"
-  name                  = "om2-phoenixpoc-vpc"
-  public_hosted_zone_id = ""
-  cidr_prefix           = "10.250"
-}
+# module "vpc" {
+#   source  = "app.terraform.io/TOMS/vpc/aws"
+#   version = "0.15.0"
+#
+#   az_primary            = "a"
+#   az_secondary          = "b"
+#   az_tertiary           = "c"
+#   az_primary_db_ro      = "a"
+#   az_secondary_db_ro    = "b"
+#   az_tertiary_db_ro     = "c"
+#   domain                = "om2.com"
+#   name                  = "om2-phoenixpoc-vpc"
+#   public_hosted_zone_id = ""
+#   cidr_prefix           = "10.250"
+# }
 
 resource "aws_security_group" "peering" {
   name        = "Internal-Peering"

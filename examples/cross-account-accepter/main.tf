@@ -57,5 +57,4 @@ module "vpc_peering_cross_account_accept" {
   auto_accept                              = true
   accepter_allow_remote_vpc_dns_resolution = false
   open_local_security_group_rule           = false
-
 }
