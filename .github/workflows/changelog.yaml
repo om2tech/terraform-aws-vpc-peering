@@ -20,13 +20,13 @@ jobs:
           fetch-depth: 0
 
       - name: Install GitVersion
-        uses: gittools/actions/gitversion/setup@v4.1.0
+        uses: gittools/actions/gitversion/setup@v3.2.1
         with:
           versionSpec: "5.12.0"
 
       - name: Determine Version
         id: gitversion
-        uses: gittools/actions/gitversion/execute@v4.1.0
+        uses: gittools/actions/gitversion/execute@v3.2.1
 
       - name: Run Changelog CI
         uses: saadmk11/changelog-ci@v1.2.0
