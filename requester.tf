@@ -141,4 +141,5 @@ resource "aws_security_group_rule" "requester" {
   protocol          = "-1"
   cidr_blocks       = var.accepter_cidr_block == "" ? [data.aws_vpc.accepter[0].cidr_block] : [var.accepter_cidr_block]
   security_group_id = data.aws_security_group.requester[0].id
+  description       = "Peering connection: ${aws_vpc_peering_connection.requester[0].id}"
 }
