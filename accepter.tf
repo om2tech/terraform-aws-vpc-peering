@@ -11,7 +11,7 @@ resource "random_string" "test" {
 # Lookup accepter's VPC so that we can reference the CIDR
 data "aws_vpc" "accepter" {
   provider = aws.accepter
-  count    = local.same_account ? 0 : local.accepter_count
+  count    = local.accepter_count
 
   id   = var.accepter_vpc_id
   tags = var.accepter_vpc_tags
