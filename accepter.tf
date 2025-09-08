@@ -72,7 +72,6 @@ data "aws_security_group" "accepter" {
 }
 
 locals {
-  #todo: like here
   accepter_aws_default_rt_id             = try(data.aws_route_tables.accepter_default_rts[0].ids, null)
   accepter_aws_rt_map                    = { for s in local.accepter_subnet_ids : s => try(data.aws_route_tables.accepter[s].ids[0], local.accepter_aws_default_rt_id) }
   accepter_aws_route_table_ids           = distinct(sort(values(local.accepter_aws_rt_map)))
@@ -127,7 +126,6 @@ resource "aws_route" "accepter" {
   }
 }
 
-
 resource "aws_security_group_rule" "accepter" {
   provider = aws.accepter
   count    = local.accepter_count
@@ -136,7 +134,7 @@ resource "aws_security_group_rule" "accepter" {
   from_port         = 0
   to_port           = 0
   protocol          = "-1"
-  cidr_blocks       = var.accepter_cidr_block == "" ? [data.aws_vpc.accepter[0].cidr_block] : [var.accepter_cidr_block]
+  cidr_blocks       = var.requester_cidr_block == "" ? [data.aws_vpc.requester[0].cidr_block] : [var.requester_cidr_block]
   security_group_id = data.aws_security_group.accepter[0].id
   description       = "Peering connection: ${local.requested_vpc_peering_connection_id}"
 }
