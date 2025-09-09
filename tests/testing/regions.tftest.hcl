@@ -65,7 +65,7 @@ run "vpc_requester" {
 
   module {
     source  = "app.terraform.io/TOMS/vpc/aws"
-    version = "0.10.1"
+    version = "0.15.0"
   }
 }
 
@@ -90,7 +90,7 @@ run "vpc_accepter" {
 
   module {
     source  = "app.terraform.io/TOMS/vpc/aws"
-    version = "0.10.1"
+    version = "0.15.0"
   }
 }
 */

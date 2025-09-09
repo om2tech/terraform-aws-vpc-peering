@@ -1,3 +1,11 @@
+# Version: 0.2.0
+
+
+#### Changes
+
+* [#8](https://github.com/om2tech/terraform-aws-vpc-peering/pull/8): MPA-21578 - Adds regional provider for Accepter resources, Sets TF provider version limit till major version upgrade, updates GitHub workflows actions' versions, updates pre-commit hooks versions
+
+
 # Version: 0.1.0
 
 
