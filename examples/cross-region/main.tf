@@ -88,7 +88,7 @@ provider "aws_accepter" {
 
 
 module "vpc_peering_request" {
-  source   = "../../"
+  source = "../../"
   providers = {
     aws = aws_accepter
   }
@@ -113,7 +113,7 @@ module "vpc_peering_request" {
 
 
 module "vpc_peering_accept" {
-  source   = "../../"
+  source = "../../"
   providers = {
     aws = aws_accepter
   }
