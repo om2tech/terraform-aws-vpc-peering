@@ -104,16 +104,15 @@ examples\standard-connection\README.md updated successfully
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.7.0, <1.9.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=5.90.0, <=5.100.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.13.0, <1.14.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=6.13.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.100.0 |
-| <a name="provider_aws.accepter"></a> [aws.accepter](#provider\_aws.accepter) | 5.100.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.7.2 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.14.1 |
+| <a name="provider_aws.accepter"></a> [aws.accepter](#provider\_aws.accepter) | 6.14.1 |
 
 ## Modules
 
@@ -154,7 +153,7 @@ No modules.
 | <a name="input_accepter_enabled"></a> [accepter\_enabled](#input\_accepter\_enabled) | Flag to enable/disable the accepter side of the peering connection | `bool` | `false` | no |
 | <a name="input_accepter_region"></a> [accepter\_region](#input\_accepter\_region) | Accepter AWS region | `string` | `""` | no |
 | <a name="input_accepter_route_table_tags"></a> [accepter\_route\_table\_tags](#input\_accepter\_route\_table\_tags) | Only add peer routes to accepter VPC route tables matching these tags | `map(string)` | `{}` | no |
-| <a name="input_accepter_security_group_name"></a> [accepter\_security\_group\_name](#input\_accepter\_security\_group\_name) | The name of the security group in the accepter VPC to allow traffic from the requester VPC<br/>  The security group should already exist in the accepter VPC | `string` | `"Internal-Peering"` | no |
+| <a name="input_accepter_security_group_name"></a> [accepter\_security\_group\_name](#input\_accepter\_security\_group\_name) | The name of the security group in the accepter VPC to allow traffic from the requester VPC<br>  The security group should already exist in the accepter VPC | `string` | `"Internal-Peering"` | no |
 | <a name="input_accepter_subnet_tags"></a> [accepter\_subnet\_tags](#input\_accepter\_subnet\_tags) | Only add peer routes to accepter VPC route tables of subnets matching these tags | `map(string)` | `{}` | no |
 | <a name="input_accepter_vpc_id"></a> [accepter\_vpc\_id](#input\_accepter\_vpc\_id) | Accepter VPC ID filter | `string` | n/a | yes |
 | <a name="input_accepter_vpc_tags"></a> [accepter\_vpc\_tags](#input\_accepter\_vpc\_tags) | Accepter VPC Tags filter | `map(string)` | `{}` | no |
@@ -171,7 +170,7 @@ No modules.
 | <a name="input_requester_cidr_block"></a> [requester\_cidr\_block](#input\_requester\_cidr\_block) | The CIDR block of the requester that will be used in accepter | `string` | `""` | no |
 | <a name="input_requester_enabled"></a> [requester\_enabled](#input\_requester\_enabled) | Whether or not to accept peering connection requested from remote account | `bool` | `false` | no |
 | <a name="input_requester_route_table_tags"></a> [requester\_route\_table\_tags](#input\_requester\_route\_table\_tags) | Only add peer routes to requester VPC route tables matching these tags | `map(string)` | `{}` | no |
-| <a name="input_requester_security_group_name"></a> [requester\_security\_group\_name](#input\_requester\_security\_group\_name) | The name of the security group in the requester VPC to allow traffic from the accepter VPC<br/>  The security group should already exist in the requester VPC | `string` | `"Internal-Peering"` | no |
+| <a name="input_requester_security_group_name"></a> [requester\_security\_group\_name](#input\_requester\_security\_group\_name) | The name of the security group in the requester VPC to allow traffic from the accepter VPC<br>  The security group should already exist in the requester VPC | `string` | `"Internal-Peering"` | no |
 | <a name="input_requester_subnet_tags"></a> [requester\_subnet\_tags](#input\_requester\_subnet\_tags) | Only add peer routes to requester VPC route tables of subnets matching these tags | `map(string)` | `{}` | no |
 | <a name="input_requester_vpc_id"></a> [requester\_vpc\_id](#input\_requester\_vpc\_id) | requester VPC ID | `string` | n/a | yes |
 | <a name="input_requester_vpc_tags"></a> [requester\_vpc\_tags](#input\_requester\_vpc\_tags) | Requester VPC Tags filter | `map(string)` | `{}` | no |

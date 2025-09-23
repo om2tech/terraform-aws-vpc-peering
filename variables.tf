@@ -1,7 +1,13 @@
+variable "accepter_account_id" {
+  type        = string
+  description = "Accepter account ID"
+  default     = ""
+}
+
 variable "accepter_allow_remote_vpc_dns_resolution" {
   type        = bool
-  default     = true
   description = "Allow accepter VPC to resolve public DNS hostnames to private IP addresses when queried from instances in the requester VPC"
+  default     = true
 }
 
 variable "accepter_cidr_block" {
@@ -11,15 +17,9 @@ variable "accepter_cidr_block" {
 }
 
 variable "accepter_enabled" {
-  description = "Flag to enable/disable the accepter side of the peering connection"
   type        = bool
+  description = "Flag to enable/disable the accepter side of the peering connection"
   default     = false
-}
-
-variable "accepter_account_id" {
-  type        = string
-  description = "Accepter account ID"
-  default     = ""
 }
 
 variable "accepter_region" {
@@ -36,11 +36,11 @@ variable "accepter_route_table_tags" {
 
 variable "accepter_security_group_name" {
   type        = string
-  default     = "Internal-Peering"
   description = <<DOC
   The name of the security group in the accepter VPC to allow traffic from the requester VPC
   The security group should already exist in the accepter VPC
   DOC
+  default     = "Internal-Peering"
 }
 
 variable "accepter_subnet_tags" {
