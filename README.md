@@ -104,16 +104,15 @@ examples\standard-connection\README.md updated successfully
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.7.0, <1.9.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=5.90.0, <=5.100.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.13.0, <1.14.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=6.13.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.100.0 |
-| <a name="provider_aws.accepter"></a> [aws.accepter](#provider\_aws.accepter) | 5.100.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.7.2 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.14.1 |
+| <a name="provider_aws.accepter"></a> [aws.accepter](#provider\_aws.accepter) | 6.14.1 |
 
 ## Modules
 

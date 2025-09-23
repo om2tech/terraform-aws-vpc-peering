@@ -1,6 +1,6 @@
 locals {
-  requester_enabled = var.create && var.requester_enabled
-  requester_count   = var.create && var.requester_enabled ? 1 : 0
+  requester_enabled = alltrue([var.create, var.requester_enabled])
+  requester_count   = local.requester_enabled ? 1 : 0
 }
 
 # Lookup requester VPC so that we can reference the CIDR
