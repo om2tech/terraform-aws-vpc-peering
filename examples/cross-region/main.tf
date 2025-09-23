@@ -89,7 +89,9 @@ provider "aws_accepter" {
 
 module "vpc_peering_request" {
   source   = "../../"
-  provider = aws
+  providers = {
+    aws = aws_accepter
+  }
 
   for_each = local.peering_requests
 
@@ -112,7 +114,9 @@ module "vpc_peering_request" {
 
 module "vpc_peering_accept" {
   source   = "../../"
-  provider = aws_accepter
+  providers = {
+    aws = aws_accepter
+  }
 
   for_each = local.peering_requests
 
@@ -130,8 +134,4 @@ module "vpc_peering_accept" {
   accepter_region     = each.value.peer_region
   accepter_cidr_block = each.value.cidr_block
   auto_accept         = true
-
-  lifecycle {
-    depends_on = [module.vpc_peering_request]
-  }
 }
