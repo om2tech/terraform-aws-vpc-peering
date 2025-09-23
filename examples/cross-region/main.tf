@@ -1,9 +1,9 @@
 terraform {
-  required_version = ">=1.7.0, <1.9.0"
+  required_version = ">=1.13.0, <1.14.0"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">=5.90.0, <=5.100.0"
+      version = ">=6.13.0"
     }
   }
 }
@@ -88,8 +88,10 @@ provider "aws_accepter" {
 
 
 module "vpc_peering_request" {
-  source   = "../../"
-  provider = aws
+  source = "../../"
+  providers = {
+    aws = aws_accepter
+  }
 
   for_each = local.peering_requests
 
@@ -111,8 +113,10 @@ module "vpc_peering_request" {
 
 
 module "vpc_peering_accept" {
-  source   = "../../"
-  provider = aws_accepter
+  source = "../../"
+  providers = {
+    aws = aws_accepter
+  }
 
   for_each = local.peering_requests
 
@@ -130,8 +134,4 @@ module "vpc_peering_accept" {
   accepter_region     = each.value.peer_region
   accepter_cidr_block = each.value.cidr_block
   auto_accept         = true
-
-  lifecycle {
-    depends_on = [module.vpc_peering_request]
-  }
 }

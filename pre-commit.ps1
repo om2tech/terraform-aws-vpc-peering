@@ -10,8 +10,7 @@ param (
     $TFTestCliArgs
 )
 
-$tag = "latest"
-docker run --rm -v ${pwd}:/lint -w /lint ghcr.io/antonbabenko/pre-commit-terraform:$tag run -a
+docker run --rm -v ${pwd}:/lint -w /lint ghcr.io/antonbabenko/pre-commit-terraform:latest run -a
 
 $tests = Get-ChildItem -Recurse -Filter '*.tftest.hcl' -File | Sort-Object
 if ($TestNamesRegex) {

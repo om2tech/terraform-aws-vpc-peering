@@ -1,3 +1,11 @@
+# Version: 0.3.0
+
+
+#### Changes
+
+* [#10](https://github.com/om2tech/terraform-aws-vpc-peering/pull/10): MPA-19340 - Bumps Terraform version to 1.13, bumps all providers and modules versions
+
+
 # Version: 0.2.0
 
 
