@@ -1,6 +1,6 @@
 locals {
   accepter_enabled                    = alltrue([var.create, var.accepter_enabled])
-  accepter_count                      = alltrue([local.accepter_enabled]) ? 1 : 0
+  accepter_count                      = local.accepter_enabled ? 1 : 0
   requested_vpc_peering_connection_id = var.peering_connection_id_to_accept != null ? var.peering_connection_id_to_accept : try(aws_vpc_peering_connection.requester[0].id, null)
 }
 
@@ -16,7 +16,7 @@ data "aws_vpc" "accepter" {
 # Lookup accepter subnets
 data "aws_subnets" "accepter" {
   provider = aws.accepter
-  count    = local.same_account ? 1 : local.accepter_count
+  count    = var.accepter_account_id == "" ? 1 : local.accepter_count
 
   filter {
     name   = "vpc-id"

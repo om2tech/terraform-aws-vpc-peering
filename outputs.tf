@@ -19,7 +19,7 @@ output "requester_accept_status" {
 }
 
 output "requester_cidr" {
-  value       = try(data.aws_vpc.requester[0].cidr_block, "")
+  value       = try(data.aws_vpc.requester[0].cidr_block, null)
   description = "CIRD of the peering connection"
 }
 
