@@ -7,12 +7,3 @@ terraform {
     }
   }
 }
-
-provider "aws" {
-  region = try(var.accepter_region, data.aws_region.current.region)
-  alias  = "accepter"
-
-  default_tags {
-    tags = var.accepter_vpc_tags
-  }
-}
