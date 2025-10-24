@@ -1,7 +1,7 @@
 locals {
   accepter_enabled                    = alltrue([var.create, var.accepter_enabled])
   accepter_count                      = local.accepter_enabled ? 1 : 0
-  requested_vpc_peering_connection_id = var.peering_connection_id_to_accept != null ? var.peering_connection_id_to_accept : try(aws_vpc_peering_connection.requester[0].id, null)
+  requested_vpc_peering_connection_id = var.accepter_peering_connection_id_to_accept != null ? var.accepter_peering_connection_id_to_accept : try(aws_vpc_peering_connection.requester[0].id, null)
 }
 
 # Lookup accepter's VPC so that we can reference the CIDR

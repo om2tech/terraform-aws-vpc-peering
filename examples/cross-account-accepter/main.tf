@@ -52,7 +52,7 @@ module "vpc_peering_cross_account_accept" {
   requester_cidr_block = each.value.requester_cidr
 
   accepter_enabled                         = local.peering_accepter
-  peering_connection_id_to_accept          = each.value.peering_connection_id
+  accepter_peering_connection_id_to_accept = each.value.peering_connection_id
   accepter_vpc_id                          = each.value.accepter_vpc_id
   accepter_auto_accept                     = true
   accepter_allow_remote_vpc_dns_resolution = false

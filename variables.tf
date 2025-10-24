@@ -107,9 +107,9 @@ variable "name" {
   description = "Name of the peering connection"
 }
 
-variable "peering_connection_id_to_accept" {
+variable "accepter_peering_connection_id_to_accept" {
   type        = string
-  description = "ID of the VPC Peering connection to accept. Only in-use for accepter-only workspaces."
+  description = "RThe ID of the VPC Peering connection to accept"
   default     = null
 }
 

@@ -119,8 +119,8 @@ run "requester" {
 run "accepter" {
 
   variables {
-    accepter_enabled                = true
-    peering_connection_id_to_accept = run.requester.peering_connection_id
+    accepter_enabled                         = true
+    accepter_peering_connection_id_to_accept = run.requester.peering_connection_id
   }
 
   providers = {
