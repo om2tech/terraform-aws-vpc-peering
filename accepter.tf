@@ -107,7 +107,7 @@ resource "aws_route" "accepter" {
   count    = local.accepter_enabled ? local.accepter_aws_route_table_ids_count : 0
 
   route_table_id            = local.accepter_aws_route_table_ids[count.index]
-  destination_cidr_block    = try(var.requester_cidr_block, data.aws_vpc.requester[0].cidr_block)
+  destination_cidr_block    = var.requester_cidr_block == "" ? data.aws_vpc.requester[0].cidr_block : null
   vpc_peering_connection_id = local.requested_vpc_peering_connection_id
 
   depends_on = [
