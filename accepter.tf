@@ -107,7 +107,7 @@ resource "aws_route" "accepter" {
   count    = local.accepter_enabled ? local.accepter_aws_route_table_ids_count : 0
 
   route_table_id            = local.accepter_aws_route_table_ids[count.index]
-  destination_cidr_block    = var.requester_cidr_block == "" ? data.aws_vpc.requester[0].cidr_block : null
+  destination_cidr_block    = var.requester_cidr_block == "" ? data.aws_vpc.requester[0].cidr_block : var.requester_cidr_block
   vpc_peering_connection_id = local.requested_vpc_peering_connection_id
 
   depends_on = [
@@ -123,7 +123,7 @@ resource "aws_route" "accepter" {
 
 resource "aws_security_group_rule" "accepter" {
   provider = aws.accepter
-  count    = local.accepter_count
+  count    = var.accepter_open_local_security_group_rule == true ? local.accepter_count : 0
 
   type              = "ingress"
   from_port         = 0

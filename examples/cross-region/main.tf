@@ -14,7 +14,7 @@ locals {
   accepter_allow_remote_vpc_dns_resolution  = true
   accepter_cidr_block                       = "10.128.0.0/16"
   accepter_vpc_id                           = "vpc-0bdf46d09297644fa"
-  open_local_security_group_rule            = true
+  accepter_open_local_security_group_rule   = true
   name                                      = "terraform-autotest-vpcpeering"
   requester_allow_remote_vpc_dns_resolution = true
   requester_cidr_block                      = "10.127.0.0/16"
@@ -101,7 +101,7 @@ module "vpc_peering_request" {
   requester_enabled                         = true
   requester_vpc_id                          = module.vpc.vpc_id
   requester_allow_remote_vpc_dns_resolution = false
-  open_local_security_group_rule            = false
+  requester_open_local_security_group_rules = false
 
   accepter_enabled     = false
   accepter_account_id  = each.value.account_id
@@ -126,7 +126,7 @@ module "vpc_peering_accept" {
   requester_enabled                         = false
   requester_vpc_id                          = module.vpc.vpc_id
   requester_allow_remote_vpc_dns_resolution = false
-  open_local_security_group_rule            = false
+  requester_open_local_security_group_rules = false
 
   accepter_enabled     = true
   accepter_account_id  = each.value.account_id

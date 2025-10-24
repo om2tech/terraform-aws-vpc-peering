@@ -28,6 +28,12 @@ variable "accepter_enabled" {
   default     = false
 }
 
+variable "accepter_open_local_security_group_rule" {
+  type        = bool
+  description = "Whether to inject the required security group rule into the local security group defined by the variable accepter_security_group_name"
+  default     = false
+}
+
 variable "accepter_region" {
   type        = string
   description = "Accepter AWS region"
@@ -96,12 +102,6 @@ variable "delete_timeout" {
   default     = "5m"
 }
 
-variable "open_local_security_group_rule" {
-  type        = bool
-  description = "Define whether or not to inject the required security group rule into the local security group defined by the variables accepter_security_group_name and requester_security_group_name. If not then this rule should be added in the calling module directly to the required SG"
-  default     = false
-}
-
 variable "name" {
   type        = string
   description = "Name of the peering connection"
@@ -128,6 +128,12 @@ variable "requester_cidr_block" {
 variable "requester_enabled" {
   type        = bool
   description = "Whether or not to accept peering connection requested from remote account"
+  default     = false
+}
+
+variable "requester_open_local_security_group_rule" {
+  type        = bool
+  description = "Whether to inject the required security group rule into the local security group defined by the variable requester_security_group_name"
   default     = false
 }
 
