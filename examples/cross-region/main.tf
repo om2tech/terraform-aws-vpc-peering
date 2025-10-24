@@ -103,12 +103,12 @@ module "vpc_peering_request" {
   requester_allow_remote_vpc_dns_resolution = false
   open_local_security_group_rule            = false
 
-  accepter_enabled    = false
-  accepter_account_id = each.value.account_id
-  accepter_vpc_id     = each.value.peer_vpc_id
-  accepter_region     = each.value.peer_region
-  accepter_cidr_block = each.value.cidr_block
-  auto_accept         = false
+  accepter_enabled     = false
+  accepter_account_id  = each.value.account_id
+  accepter_vpc_id      = each.value.peer_vpc_id
+  accepter_region      = each.value.peer_region
+  accepter_cidr_block  = each.value.cidr_block
+  accepter_auto_accept = false
 }
 
 
@@ -128,10 +128,10 @@ module "vpc_peering_accept" {
   requester_allow_remote_vpc_dns_resolution = false
   open_local_security_group_rule            = false
 
-  accepter_enabled    = true
-  accepter_account_id = each.value.account_id
-  accepter_vpc_id     = each.value.peer_vpc_id
-  accepter_region     = each.value.peer_region
-  accepter_cidr_block = each.value.cidr_block
-  auto_accept         = true
+  accepter_enabled     = true
+  accepter_account_id  = each.value.account_id
+  accepter_vpc_id      = each.value.peer_vpc_id
+  accepter_region      = each.value.peer_region
+  accepter_cidr_block  = each.value.cidr_block
+  accepter_auto_accept = true
 }

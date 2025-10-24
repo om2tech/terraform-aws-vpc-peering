@@ -3,7 +3,7 @@ variables {
   accepter_cidr_block                       = "10.128.0.0/16"
   accepter_region                           = "eu-west-2"
   accepter_vpc_id                           = "vpc-ABCDEFGHIJKL"
-  auto_accept                               = false
+  accepter_auto_accept                      = false
   create                                    = true
   open_local_security_group_rule            = true
   name                                      = "terraform-autotest-vpcpeering"

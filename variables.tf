@@ -10,6 +10,12 @@ variable "accepter_allow_remote_vpc_dns_resolution" {
   default     = true
 }
 
+variable "accepter_auto_accept" {
+  type        = bool
+  description = "Automatically accept the peering from accepter's side"
+  default     = true
+}
+
 variable "accepter_cidr_block" {
   type        = string
   description = "CIDR block for accepter's VPC"
@@ -58,12 +64,6 @@ variable "accepter_vpc_tags" {
   type        = map(string)
   description = "Accepter VPC Tags filter"
   default     = {}
-}
-
-variable "auto_accept" {
-  type        = bool
-  description = "Automatically accept the peering"
-  default     = true
 }
 
 variable "aws_route_create_timeout" {

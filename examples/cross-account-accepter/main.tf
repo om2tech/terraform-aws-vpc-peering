@@ -54,7 +54,7 @@ module "vpc_peering_cross_account_accept" {
   accepter_enabled                         = local.peering_accepter
   peering_connection_id_to_accept          = each.value.peering_connection_id
   accepter_vpc_id                          = each.value.accepter_vpc_id
-  auto_accept                              = true
+  accepter_auto_accept                     = true
   accepter_allow_remote_vpc_dns_resolution = false
   open_local_security_group_rule           = false
 }
