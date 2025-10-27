@@ -3,9 +3,10 @@ variables {
   accepter_cidr_block                       = "10.128.0.0/16"
   accepter_region                           = "eu-west-2"
   accepter_vpc_id                           = "vpc-ABCDEFGHIJKL"
-  auto_accept                               = false
+  accepter_auto_accept                      = false
   create                                    = true
-  open_local_security_group_rule            = true
+  accepter_open_local_security_group_rule   = true
+  requester_open_local_security_group_rule  = true
   name                                      = "terraform-autotest-vpcpeering"
   requester_allow_remote_vpc_dns_resolution = true
   requester_cidr_block                      = "10.127.0.0/16"
@@ -119,8 +120,8 @@ run "requester" {
 run "accepter" {
 
   variables {
-    accepter_enabled                = true
-    peering_connection_id_to_accept = run.requester.peering_connection_id
+    accepter_enabled                         = true
+    accepter_peering_connection_id_to_accept = run.requester.peering_connection_id
   }
 
   providers = {

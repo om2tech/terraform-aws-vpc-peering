@@ -133,7 +133,7 @@ resource "aws_route" "requester" {
 }
 
 resource "aws_security_group_rule" "requester" {
-  count = alltrue([var.open_local_security_group_rule, local.requester_enabled]) ? 1 : 0
+  count = var.requester_open_local_security_group_rule == true ? local.requester_count : 0
 
   type              = "ingress"
   from_port         = 0

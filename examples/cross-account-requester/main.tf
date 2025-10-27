@@ -87,11 +87,11 @@ module "vpc_peering_request" {
 
   requester_vpc_id                          = module.vpc.vpc_id
   requester_allow_remote_vpc_dns_resolution = false
-  open_local_security_group_rule            = false
+  requester_open_local_security_group_rule  = false
 
-  accepter_account_id = each.value.account_id
-  accepter_vpc_id     = each.value.peer_vpc_id
-  accepter_region     = each.value.peer_region
-  accepter_cidr_block = each.value.cidr_block
-  auto_accept         = false
+  accepter_account_id  = each.value.account_id
+  accepter_vpc_id      = each.value.peer_vpc_id
+  accepter_region      = each.value.peer_region
+  accepter_cidr_block  = each.value.cidr_block
+  accepter_auto_accept = false
 }

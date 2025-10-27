@@ -1,7 +1,7 @@
 locals {
   accepter_enabled                    = alltrue([var.create, var.accepter_enabled])
-  accepter_count                      = alltrue([local.accepter_enabled]) ? 1 : 0
-  requested_vpc_peering_connection_id = var.peering_connection_id_to_accept != null ? var.peering_connection_id_to_accept : try(aws_vpc_peering_connection.requester[0].id, null)
+  accepter_count                      = local.accepter_enabled ? 1 : 0
+  requested_vpc_peering_connection_id = var.accepter_peering_connection_id_to_accept != null ? var.accepter_peering_connection_id_to_accept : try(aws_vpc_peering_connection.requester[0].id, null)
 }
 
 # Lookup accepter's VPC so that we can reference the CIDR
@@ -16,7 +16,7 @@ data "aws_vpc" "accepter" {
 # Lookup accepter subnets
 data "aws_subnets" "accepter" {
   provider = aws.accepter
-  count    = local.same_account ? 1 : local.accepter_count
+  count    = var.accepter_account_id == "" ? 1 : local.accepter_count
 
   filter {
     name   = "vpc-id"
@@ -82,7 +82,7 @@ resource "aws_vpc_peering_connection_accepter" "accepter" {
   count    = local.accepter_count
 
   vpc_peering_connection_id = local.requested_vpc_peering_connection_id
-  auto_accept               = true
+  auto_accept               = var.accepter_auto_accept
   tags                      = var.tags
 }
 
@@ -104,16 +104,15 @@ resource "aws_vpc_peering_connection_options" "accepter" {
 # Create routes from accepter to requester
 resource "aws_route" "accepter" {
   provider = aws.accepter
-  count    = local.accepter_enabled ? local.accepter_aws_route_table_ids_count * local.requester_cidr_block_associations_count : 0
+  count    = local.accepter_enabled ? local.accepter_aws_route_table_ids_count : 0
 
-  route_table_id            = local.accepter_aws_route_table_ids[floor(count.index / local.requester_cidr_block_associations_count)]
-  destination_cidr_block    = local.requester_cidr_block_associations[count.index % local.requester_cidr_block_associations_count]["cidr_block"]
+  route_table_id            = local.accepter_aws_route_table_ids[count.index]
+  destination_cidr_block    = var.requester_cidr_block == "" ? data.aws_vpc.requester[0].cidr_block : var.requester_cidr_block
   vpc_peering_connection_id = local.requested_vpc_peering_connection_id
 
   depends_on = [
     data.aws_route_tables.accepter,
-    aws_vpc_peering_connection_accepter.accepter,
-    aws_vpc_peering_connection.requester, # may conflict, may not exist in accepter only workspaces
+    aws_vpc_peering_connection_accepter.accepter
   ]
 
   timeouts {
@@ -124,7 +123,7 @@ resource "aws_route" "accepter" {
 
 resource "aws_security_group_rule" "accepter" {
   provider = aws.accepter
-  count    = local.accepter_count
+  count    = var.accepter_open_local_security_group_rule == true ? local.accepter_count : 0
 
   type              = "ingress"
   from_port         = 0

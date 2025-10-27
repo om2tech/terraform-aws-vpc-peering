@@ -4,9 +4,10 @@ variables {
   accepter_cidr_block                       = "10.128.0.0/16"
   accepter_enabled                          = true
   accepter_vpc_id                           = "vpc-0bdf46d09297644fa"
-  auto_accept                               = true
+  accepter_auto_accept                      = true
   create                                    = true
-  open_local_security_group_rule            = true
+  accepter_open_local_security_group_rule   = true
+  requester_open_local_security_group_rule  = true
   name                                      = "terraform-autotest-vpcpeering"
   requester_allow_remote_vpc_dns_resolution = true
   requester_cidr_block                      = "10.127.0.0/16"
