@@ -120,7 +120,7 @@ resource "aws_route" "requester" {
   }
 
   depends_on = [
-    data.aws_route_table.requester,
+    data.aws_route_tables.requester,
     aws_vpc_peering_connection.requester,
     aws_vpc_peering_connection_accepter.accepter
   ]
