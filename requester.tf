@@ -68,9 +68,6 @@ locals {
   requester_route_table_ids_count         = length(local.requester_route_table_ids)
   requester_cidr_block_associations       = try(flatten(data.aws_vpc.requester[0].cidr_block_associations), [])
   requester_cidr_block_associations_count = length(local.requester_cidr_block_associations)
-
-  requester_subnet_ids       = try(distinct(sort(flatten(data.aws_subnets.requester[0].ids))), [])
-  requester_subnet_ids_count = length(local.requester_subnet_ids)
 }
 
 # Lookup requester route tables
