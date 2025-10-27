@@ -42,7 +42,7 @@ data "aws_route_tables" "accepter" {
   }
 }
 
-# If we had more subnets than routetables, we should update the default.
+# If we had more subnets than routetables, we should update the default
 data "aws_route_tables" "accepter_default_rts" {
   provider = aws.accepter
   count    = local.accepter_count
@@ -68,15 +68,15 @@ data "aws_security_group" "accepter" {
 }
 
 locals {
-  accepter_aws_default_rt_id             = try(data.aws_route_tables.accepter_default_rts[0].ids, null)
-  accepter_aws_rt_map                    = { for s in local.accepter_subnet_ids : s => try(data.aws_route_tables.accepter[s].ids[0], local.accepter_aws_default_rt_id) }
-  accepter_aws_route_table_ids           = distinct(sort(values(local.accepter_aws_rt_map)))
-  accepter_aws_route_table_ids_count     = length(local.accepter_aws_route_table_ids)
+  accepter_default_rt_id                 = try(data.aws_route_tables.accepter_default_rts[0].ids, null)
+  accepter_rt_map                        = { for s in local.accepter_subnet_ids : s => try(data.aws_route_tables.accepter[s].ids[0], local.accepter_default_rt_id) }
+  accepter_route_table_ids               = distinct(sort(values(local.accepter_rt_map)))
+  accepter_route_table_ids_count         = length(local.accepter_route_table_ids)
   accepter_cidr_block_associations       = try(flatten(data.aws_vpc.accepter[0].cidr_block_associations), [])
   accepter_cidr_block_associations_count = length(local.accepter_cidr_block_associations)
 }
 
-# Accepter's side of the connection.
+# Accepter's side of the connection
 resource "aws_vpc_peering_connection_accepter" "accepter" {
   provider = aws.accepter
   count    = local.accepter_count
@@ -104,21 +104,21 @@ resource "aws_vpc_peering_connection_options" "accepter" {
 # Create routes from accepter to requester
 resource "aws_route" "accepter" {
   provider = aws.accepter
-  count    = local.accepter_enabled ? local.accepter_aws_route_table_ids_count : 0
+  count    = local.accepter_enabled ? local.accepter_route_table_ids_count : 0
 
-  route_table_id            = local.accepter_aws_route_table_ids[count.index]
+  route_table_id            = local.accepter_route_table_ids[count.index]
   destination_cidr_block    = var.requester_cidr_block == "" ? data.aws_vpc.requester[0].cidr_block : var.requester_cidr_block
   vpc_peering_connection_id = local.requested_vpc_peering_connection_id
-
-  depends_on = [
-    data.aws_route_tables.accepter,
-    aws_vpc_peering_connection_accepter.accepter
-  ]
 
   timeouts {
     create = var.aws_route_create_timeout
     delete = var.aws_route_delete_timeout
   }
+
+  depends_on = [
+    data.aws_route_tables.accepter,
+    aws_vpc_peering_connection_accepter.accepter
+  ]
 }
 
 resource "aws_security_group_rule" "accepter" {
@@ -131,5 +131,5 @@ resource "aws_security_group_rule" "accepter" {
   protocol          = "-1"
   cidr_blocks       = var.requester_cidr_block == "" ? [data.aws_vpc.requester[0].cidr_block] : [var.requester_cidr_block]
   security_group_id = data.aws_security_group.accepter[0].id
-  description       = "Peering connection: ${local.requested_vpc_peering_connection_id}"
+  description       = "vpc peering id: ${local.requested_vpc_peering_connection_id}"
 }
