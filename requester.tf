@@ -28,7 +28,6 @@ locals {
 }
 
 data "aws_route_tables" "requester" {
-  count    = local.requester_count
   for_each = toset(local.requester_subnet_ids)
 
   vpc_id = var.requester_vpc_id
