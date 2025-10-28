@@ -1,3 +1,12 @@
+# Version: 1.0.0
+
+
+#### Changes
+
+* [#12](https://github.com/om2tech/terraform-aws-vpc-peering/pull/12): MPA-21606 - Removes accepter provider in favor it to be send from outside so to allow for_each and count, fixes accepter route table entries injection, adds option to allow SG rule injection from each side
+* [#13](https://github.com/om2tech/terraform-aws-vpc-peering/pull/13): MPA-21606 - Fixes route tables rules creation from requester side
+
+
 # Version: 0.3.0
 
 
