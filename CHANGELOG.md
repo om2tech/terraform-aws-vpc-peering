@@ -1,3 +1,11 @@
+# Version: 1.0.0
+
+
+#### Changes
+
+* [#13](https://github.com/om2tech/terraform-aws-vpc-peering/pull/13): MPA-21606 - Fixes route tables rules creation from requester side
+
+
 # Version: 0.3.0
 
 
