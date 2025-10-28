@@ -9,7 +9,7 @@ output "accepter_peering_connection_id" {
 }
 
 output "accepter_subnet_route_table_map" {
-  value       = local.accepter_aws_rt_map
+  value       = local.accepter_rt_map
   description = "Map of accepter VPC subnet IDs to route table IDs"
 }
 

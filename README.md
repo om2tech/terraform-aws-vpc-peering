@@ -104,8 +104,8 @@ examples\standard-connection\README.md updated successfully
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.13.0, <1.14.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=6.13.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >=1.7.0, <1.9.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | 5.100.0 |
 
 ## Providers
 
@@ -122,25 +122,24 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [aws_route.accepter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route) | resource |
-| [aws_route.requester](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route) | resource |
-| [aws_security_group_rule.accepter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
-| [aws_security_group_rule.requester](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group_rule) | resource |
-| [aws_vpc_peering_connection.requester](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection) | resource |
-| [aws_vpc_peering_connection_accepter.accepter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection_accepter) | resource |
-| [aws_vpc_peering_connection_options.accepter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection_options) | resource |
-| [aws_vpc_peering_connection_options.requester](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection_options) | resource |
-| [aws_route_table.requester](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route_table) | data source |
-| [aws_route_tables.accepter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route_tables) | data source |
-| [aws_route_tables.accepter_default_rts](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route_tables) | data source |
-| [aws_route_tables.requester](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route_tables) | data source |
-| [aws_route_tables.requester_default_rts](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route_tables) | data source |
-| [aws_security_group.accepter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/security_group) | data source |
-| [aws_security_group.requester](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/security_group) | data source |
-| [aws_subnets.accepter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnets) | data source |
-| [aws_subnets.requester](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnets) | data source |
-| [aws_vpc.accepter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc) | data source |
-| [aws_vpc.requester](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/vpc) | data source |
+| [aws_route.accepter](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/resources/route) | resource |
+| [aws_route.requester](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/resources/route) | resource |
+| [aws_security_group_rule.accepter](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/resources/security_group_rule) | resource |
+| [aws_security_group_rule.requester](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/resources/security_group_rule) | resource |
+| [aws_vpc_peering_connection.requester](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/resources/vpc_peering_connection) | resource |
+| [aws_vpc_peering_connection_accepter.accepter](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/resources/vpc_peering_connection_accepter) | resource |
+| [aws_vpc_peering_connection_options.accepter](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/resources/vpc_peering_connection_options) | resource |
+| [aws_vpc_peering_connection_options.requester](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/resources/vpc_peering_connection_options) | resource |
+| [aws_route_tables.accepter](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/data-sources/route_tables) | data source |
+| [aws_route_tables.accepter_default_rts](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/data-sources/route_tables) | data source |
+| [aws_route_tables.requester](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/data-sources/route_tables) | data source |
+| [aws_route_tables.requester_default_rts](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/data-sources/route_tables) | data source |
+| [aws_security_group.accepter](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/data-sources/security_group) | data source |
+| [aws_security_group.requester](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/data-sources/security_group) | data source |
+| [aws_subnets.accepter](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/data-sources/subnets) | data source |
+| [aws_subnets.requester](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/data-sources/subnets) | data source |
+| [aws_vpc.accepter](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/data-sources/vpc) | data source |
+| [aws_vpc.requester](https://registry.terraform.io/providers/hashicorp/aws/5.100.0/docs/data-sources/vpc) | data source |
 
 ## Inputs
 
