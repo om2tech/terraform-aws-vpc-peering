@@ -10,6 +10,12 @@ variable "accepter_allow_remote_vpc_dns_resolution" {
   default     = true
 }
 
+variable "accepter_auto_accept" {
+  type        = bool
+  description = "Automatically accept the peering from accepter's side"
+  default     = true
+}
+
 variable "accepter_cidr_block" {
   type        = string
   description = "CIDR block for accepter's VPC"
@@ -19,6 +25,12 @@ variable "accepter_cidr_block" {
 variable "accepter_enabled" {
   type        = bool
   description = "Flag to enable/disable the accepter side of the peering connection"
+  default     = false
+}
+
+variable "accepter_open_local_security_group_rule" {
+  type        = bool
+  description = "Whether to inject the required security group rule into the local security group defined by the variable accepter_security_group_name"
   default     = false
 }
 
@@ -60,12 +72,6 @@ variable "accepter_vpc_tags" {
   default     = {}
 }
 
-variable "auto_accept" {
-  type        = bool
-  description = "Automatically accept the peering"
-  default     = true
-}
-
 variable "aws_route_create_timeout" {
   type        = string
   description = "Time to wait for AWS route creation specifed as a Go Duration, e.g. `2m`"
@@ -96,20 +102,14 @@ variable "delete_timeout" {
   default     = "5m"
 }
 
-variable "open_local_security_group_rule" {
-  type        = bool
-  description = "Define whether or not to inject the required security group rule into the local security group defined by the variables accepter_security_group_name and requester_security_group_name. If not then this rule should be added in the calling module directly to the required SG"
-  default     = false
-}
-
 variable "name" {
   type        = string
   description = "Name of the peering connection"
 }
 
-variable "peering_connection_id_to_accept" {
+variable "accepter_peering_connection_id_to_accept" {
   type        = string
-  description = "ID of the VPC Peering connection to accept. Only in-use for accepter-only workspaces."
+  description = "RThe ID of the VPC Peering connection to accept"
   default     = null
 }
 
@@ -128,6 +128,12 @@ variable "requester_cidr_block" {
 variable "requester_enabled" {
   type        = bool
   description = "Whether or not to accept peering connection requested from remote account"
+  default     = false
+}
+
+variable "requester_open_local_security_group_rule" {
+  type        = bool
+  description = "Whether to inject the required security group rule into the local security group defined by the variable requester_security_group_name"
   default     = false
 }
 

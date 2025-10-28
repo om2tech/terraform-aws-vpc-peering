@@ -111,8 +111,8 @@ examples\standard-connection\README.md updated successfully
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.14.1 |
-| <a name="provider_aws.accepter"></a> [aws.accepter](#provider\_aws.accepter) | 6.14.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 6.18.0 |
+| <a name="provider_aws.accepter"></a> [aws.accepter](#provider\_aws.accepter) | 6.18.0 |
 
 ## Modules
 
@@ -130,8 +130,6 @@ No modules.
 | [aws_vpc_peering_connection_accepter.accepter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection_accepter) | resource |
 | [aws_vpc_peering_connection_options.accepter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection_options) | resource |
 | [aws_vpc_peering_connection_options.requester](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_peering_connection_options) | resource |
-| [aws_region.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/region) | data source |
-| [aws_route_table.requester](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route_table) | data source |
 | [aws_route_tables.accepter](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route_tables) | data source |
 | [aws_route_tables.accepter_default_rts](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route_tables) | data source |
 | [aws_route_tables.requester](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/route_tables) | data source |
@@ -149,26 +147,27 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_accepter_account_id"></a> [accepter\_account\_id](#input\_accepter\_account\_id) | Accepter account ID | `string` | `""` | no |
 | <a name="input_accepter_allow_remote_vpc_dns_resolution"></a> [accepter\_allow\_remote\_vpc\_dns\_resolution](#input\_accepter\_allow\_remote\_vpc\_dns\_resolution) | Allow accepter VPC to resolve public DNS hostnames to private IP addresses when queried from instances in the requester VPC | `bool` | `true` | no |
+| <a name="input_accepter_auto_accept"></a> [accepter\_auto\_accept](#input\_accepter\_auto\_accept) | Automatically accept the peering from accepter's side | `bool` | `true` | no |
 | <a name="input_accepter_cidr_block"></a> [accepter\_cidr\_block](#input\_accepter\_cidr\_block) | CIDR block for accepter's VPC | `string` | `""` | no |
 | <a name="input_accepter_enabled"></a> [accepter\_enabled](#input\_accepter\_enabled) | Flag to enable/disable the accepter side of the peering connection | `bool` | `false` | no |
+| <a name="input_accepter_open_local_security_group_rule"></a> [accepter\_open\_local\_security\_group\_rule](#input\_accepter\_open\_local\_security\_group\_rule) | Whether to inject the required security group rule into the local security group defined by the variable accepter\_security\_group\_name | `bool` | `false` | no |
+| <a name="input_accepter_peering_connection_id_to_accept"></a> [accepter\_peering\_connection\_id\_to\_accept](#input\_accepter\_peering\_connection\_id\_to\_accept) | RThe ID of the VPC Peering connection to accept | `string` | `null` | no |
 | <a name="input_accepter_region"></a> [accepter\_region](#input\_accepter\_region) | Accepter AWS region | `string` | `""` | no |
 | <a name="input_accepter_route_table_tags"></a> [accepter\_route\_table\_tags](#input\_accepter\_route\_table\_tags) | Only add peer routes to accepter VPC route tables matching these tags | `map(string)` | `{}` | no |
 | <a name="input_accepter_security_group_name"></a> [accepter\_security\_group\_name](#input\_accepter\_security\_group\_name) | The name of the security group in the accepter VPC to allow traffic from the requester VPC<br/>  The security group should already exist in the accepter VPC | `string` | `"Internal-Peering"` | no |
 | <a name="input_accepter_subnet_tags"></a> [accepter\_subnet\_tags](#input\_accepter\_subnet\_tags) | Only add peer routes to accepter VPC route tables of subnets matching these tags | `map(string)` | `{}` | no |
 | <a name="input_accepter_vpc_id"></a> [accepter\_vpc\_id](#input\_accepter\_vpc\_id) | Accepter VPC ID filter | `string` | n/a | yes |
 | <a name="input_accepter_vpc_tags"></a> [accepter\_vpc\_tags](#input\_accepter\_vpc\_tags) | Accepter VPC Tags filter | `map(string)` | `{}` | no |
-| <a name="input_auto_accept"></a> [auto\_accept](#input\_auto\_accept) | Automatically accept the peering | `bool` | `true` | no |
 | <a name="input_aws_route_create_timeout"></a> [aws\_route\_create\_timeout](#input\_aws\_route\_create\_timeout) | Time to wait for AWS route creation specifed as a Go Duration, e.g. `2m` | `string` | `"5m"` | no |
 | <a name="input_aws_route_delete_timeout"></a> [aws\_route\_delete\_timeout](#input\_aws\_route\_delete\_timeout) | Time to wait for AWS route deletion specifed as a Go Duration, e.g. `5m` | `string` | `"5m"` | no |
 | <a name="input_create"></a> [create](#input\_create) | A boolean value to control creation of VPC peering connection | `bool` | `true` | no |
 | <a name="input_create_timeout"></a> [create\_timeout](#input\_create\_timeout) | VPC peering connection create timeout. For more details, see https://www.terraform.io/docs/configuration/resources.html#operation-timeouts | `string` | `"30m"` | no |
 | <a name="input_delete_timeout"></a> [delete\_timeout](#input\_delete\_timeout) | VPC peering connection delete timeout. For more details, see https://www.terraform.io/docs/configuration/resources.html#operation-timeouts | `string` | `"5m"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the peering connection | `string` | n/a | yes |
-| <a name="input_open_local_security_group_rule"></a> [open\_local\_security\_group\_rule](#input\_open\_local\_security\_group\_rule) | Define whether or not to inject the required security group rule into the local security group defined by the variables accepter\_security\_group\_name and requester\_security\_group\_name. If not then this rule should be added in the calling module directly to the required SG | `bool` | `false` | no |
-| <a name="input_peering_connection_id_to_accept"></a> [peering\_connection\_id\_to\_accept](#input\_peering\_connection\_id\_to\_accept) | ID of the VPC Peering connection to accept. Only in-use for accepter-only workspaces. | `string` | `null` | no |
 | <a name="input_requester_allow_remote_vpc_dns_resolution"></a> [requester\_allow\_remote\_vpc\_dns\_resolution](#input\_requester\_allow\_remote\_vpc\_dns\_resolution) | Allow requester VPC to resolve public DNS hostnames to private IP addresses when queried from instances in the accepter VPC | `bool` | `true` | no |
 | <a name="input_requester_cidr_block"></a> [requester\_cidr\_block](#input\_requester\_cidr\_block) | The CIDR block of the requester that will be used in accepter | `string` | `""` | no |
 | <a name="input_requester_enabled"></a> [requester\_enabled](#input\_requester\_enabled) | Whether or not to accept peering connection requested from remote account | `bool` | `false` | no |
+| <a name="input_requester_open_local_security_group_rule"></a> [requester\_open\_local\_security\_group\_rule](#input\_requester\_open\_local\_security\_group\_rule) | Whether to inject the required security group rule into the local security group defined by the variable requester\_security\_group\_name | `bool` | `false` | no |
 | <a name="input_requester_route_table_tags"></a> [requester\_route\_table\_tags](#input\_requester\_route\_table\_tags) | Only add peer routes to requester VPC route tables matching these tags | `map(string)` | `{}` | no |
 | <a name="input_requester_security_group_name"></a> [requester\_security\_group\_name](#input\_requester\_security\_group\_name) | The name of the security group in the requester VPC to allow traffic from the accepter VPC<br/>  The security group should already exist in the requester VPC | `string` | `"Internal-Peering"` | no |
 | <a name="input_requester_subnet_tags"></a> [requester\_subnet\_tags](#input\_requester\_subnet\_tags) | Only add peer routes to requester VPC route tables of subnets matching these tags | `map(string)` | `{}` | no |

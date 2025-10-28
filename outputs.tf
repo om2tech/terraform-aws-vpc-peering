@@ -9,7 +9,7 @@ output "accepter_peering_connection_id" {
 }
 
 output "accepter_subnet_route_table_map" {
-  value       = local.accepter_aws_rt_map
+  value       = local.accepter_rt_map
   description = "Map of accepter VPC subnet IDs to route table IDs"
 }
 
@@ -19,7 +19,7 @@ output "requester_accept_status" {
 }
 
 output "requester_cidr" {
-  value       = try(data.aws_vpc.requester[0].cidr_block, "")
+  value       = try(data.aws_vpc.requester[0].cidr_block, null)
   description = "CIRD of the peering connection"
 }
 
